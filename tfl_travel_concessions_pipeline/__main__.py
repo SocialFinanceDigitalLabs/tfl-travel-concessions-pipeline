@@ -1,6 +1,6 @@
 import click as click
 
-from tfl_travel_concessions_pipeline.tfl import tfl
+from tfl_travel_concessions_pipeline.cli import tfl
 
 
 @click.group()
