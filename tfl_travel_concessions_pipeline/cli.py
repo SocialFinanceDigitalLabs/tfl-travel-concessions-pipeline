@@ -23,18 +23,31 @@ def tfl():
     "--input",
     "-i",
     type=click.Path(exists=True, file_okay=False, readable=True),
-    help="A string specifying the input file location",
+    help="A string specifying the input file location.",
 )
-def pipeline(input):
+@click.option(
+    "--output",
+    "-o",
+    type=click.Path(exists=True, file_okay=False, readable=True),
+    help="A string specifying the output directory location.",
+)
+@click.option(
+    "--log_dir",
+    required=True,
+    type=str,
+    help="A string specifying the location that the log files should be output, usable by a pathlib Path function.",
+)
+def pipeline(input, output, log_dir):
     """
     Run the data processing pipeline on a set of Excel files.
 
     :param input: The directory containing the Excel files.
+    :param output: The directory to which csv file is output.
     :return: None
     """
 
     start_time = f"{datetime.now():%Y-%m-%dT%H%M%SZ}"
-    log_filename = f"{input}/Care_leavers_processing_error_log_{start_time}.txt"
+    log_filename = f"{log_dir}/Care_leavers_processing_error_log_{start_time}.txt"
 
     # process input Excel files
     files = glob.glob(input + "/*.xlsx")
@@ -47,7 +60,7 @@ def pipeline(input):
     if not all_data.empty:
         now = datetime.now()
         timestamp_str = now.strftime("%d%m%yT%H%M")
-        create_csv(input, all_data, timestamp_str)
+        create_csv(output, all_data, timestamp_str)
         data_pipeline(all_data)
     else:
         save_empty_csv_error(log_filename)
