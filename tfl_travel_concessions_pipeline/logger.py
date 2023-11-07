@@ -11,13 +11,12 @@ def save_worksheet_name_error(log_filename, filename, worksheet_name):
     :return: Text file containing the error information
     """
 
-    start_time = f"{datetime.now():%Y-%m-%dT%H%M%SZ}"
     with open(
         log_filename,
         "a",
     ) as f:
         f.write(
-            f"{start_time} Could not process '{filename}' because no worksheet named '{worksheet_name}' was found in the file\n"
+            f"Could not process '{filename}' because no worksheet named '{worksheet_name}' was found in the file\n"
         )
 
 
@@ -30,13 +29,12 @@ def save_worksheet_columns_error(log_filename, filename):
     :return: Text file containing the error information
     """
 
-    start_time = f"{datetime.now():%Y-%m-%dT%H%M%SZ}"
     with open(
         log_filename,
         "a",
     ) as f:
         f.write(
-            f"{start_time} Could not process '{filename}' because not all required columns were found in the file\n"
+            f"Could not process '{filename}' because not all required columns were found in the file\n"
         )
 
 
@@ -50,13 +48,12 @@ def save_dropped_rows_error(log_filename, filename, dropped_row_count):
     :return: Text file containing the error information
     """
 
-    start_time = f"{datetime.now():%Y-%m-%dT%H%M%SZ}"
     with open(
         log_filename,
         "a",
     ) as f:
         f.write(
-            f"{start_time} Removed {dropped_row_count} rows from '{filename}' because not all columns contained values\n"
+            f"Removed {dropped_row_count} rows from '{filename}' because not all columns contained values\n"
         )
 
 
@@ -68,7 +65,6 @@ def save_empty_csv_error(log_filename):
     :return: Text file containing the error information
     """
 
-    start_time = f"{datetime.now():%Y-%m-%dT%H%M%SZ}"
     with open(
         log_filename,
         "a",

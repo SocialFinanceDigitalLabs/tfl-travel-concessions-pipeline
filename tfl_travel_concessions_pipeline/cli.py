@@ -42,7 +42,8 @@ def pipeline(input, output, log_dir):
     Run the data processing pipeline on a set of Excel files.
 
     :param input: The directory containing the Excel files.
-    :param output: The directory to which csv file is output.
+    :param output: The output directory location for the csv file.
+    :param log_dir: The output directory location for the log file.
     :return: None
     """
 
