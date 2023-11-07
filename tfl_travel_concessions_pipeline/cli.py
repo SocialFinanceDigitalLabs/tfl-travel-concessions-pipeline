@@ -45,7 +45,9 @@ def pipeline(input):
 
     # Output processed data to csv file
     if not all_data.empty:
-        create_csv(input, all_data)
+        now = datetime.now()
+        timestamp_str = now.strftime("%d%m%yT%H%M")
+        create_csv(input, all_data, timestamp_str)
         data_pipeline(all_data)
     else:
         save_empty_csv_error(log_filename)
